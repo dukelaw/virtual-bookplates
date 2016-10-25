@@ -1,0 +1,15 @@
+---
+# appliation specific tasks
+# setup apache
+- name: install any version of apache
+  yum: name=apache2 state=present
+# application python dependencies
+- name: install modules from requirements file
+  pip: requirements=/vagrant/requirements.txt virtualenv=/home/vagrant/bookplate-venv
+
+# git clone repository for project
+# for development link to apache html doc directory
+# this happens in staging/testing/production
+# setup directives for wsgi
+# set permissions
+# move files around

@@ -1,0 +1,12 @@
+---
+# basic packages
+- name: install python
+  yum: name=python state=present
+- name: install python-devel
+  yum: name=python-devel state=present
+- name: install python-pip
+  yum: name=python-pip state=latest
+- name: install python-virtualenv
+  yum: name=python-virtualenv state=latest
+- name: install modules from requirements file
+  pip: requirements=/vagrant/requirements.txt virtualenv=/home/vagrant/bookplate-venv

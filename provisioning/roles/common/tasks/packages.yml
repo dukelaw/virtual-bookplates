@@ -1,0 +1,8 @@
+---
+# basic packages
+- name: Install Emacs
+  yum: name=emacs state=present
+- name: Install Git
+  yum: name=git state=present
+- name: Install FTP
+  yum: name=ftp state=present

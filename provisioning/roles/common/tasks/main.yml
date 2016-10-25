@@ -1,0 +1,5 @@
+---
+# applications and basic tasks
+- include: yum.yml
+- include: packages.yml
+- include: system.yml

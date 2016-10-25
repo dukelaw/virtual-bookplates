@@ -1,0 +1,19 @@
+---
+# appservers playbook
+- hosts: all
+  remote_user: "{{ remote_user }}"
+  become: true
+  roles:
+    - common
+
+- hosts: appservers
+  remote_user: "{{ remote_user }}"
+  become: true
+  roles:
+    - appservers
+
+- hosts: dbservers
+  remote_user: "{{ remote_user }}"
+  become: true
+  roles:
+    - dbservers

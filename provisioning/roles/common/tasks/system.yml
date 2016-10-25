@@ -1,0 +1,5 @@
+---
+# - name: set timezone to system variable
+#  timezone: name={{ timezone }}
+- name: set timezone to system variable
+  command: '/bin/timedatectl set-timezone {{ timezone }}'
