@@ -1,3 +1,4 @@
 .vagrant
 venv
 *.pyc
+site.retry
