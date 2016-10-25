@@ -3,6 +3,10 @@
 # setup apache
 - name: install any version of apache
   yum: name=httpd state=present
+  notify:
+    - restart httpd
+- name: install mod_wsgi for apache
+  yum: name=mod_wsgi state=present
 # application python dependencies
 - name: install modules from requirements file
   pip: requirements=/vagrant/requirements.txt virtualenv=/home/vagrant/bookplate-venv
