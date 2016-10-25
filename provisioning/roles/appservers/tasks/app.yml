@@ -2,7 +2,7 @@
 # appliation specific tasks
 # setup apache
 - name: install any version of apache
-  yum: name=apache2 state=present
+  yum: name=httpd state=present
 # application python dependencies
 - name: install modules from requirements file
   pip: requirements=/vagrant/requirements.txt virtualenv=/home/vagrant/bookplate-venv
