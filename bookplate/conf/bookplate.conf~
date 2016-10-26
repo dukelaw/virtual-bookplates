@@ -1,0 +1,5 @@
+Alias "/vagrant/example" "/var/www/bookplate"
+
+<Directory /var/www/bookplate>
+    Require all granted    
+</Directory>

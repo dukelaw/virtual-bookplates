@@ -9,4 +9,14 @@
 - name: install python-virtualenv
   yum: name=python-virtualenv state=latest
 - name: install modules from requirements file
-  pip: requirements=/vagrant/requirements.txt virtualenv=/home/vagrant/bookplate-venv
+  pip: requirements=/vagrant/requirements.txt
+       virtualenv=/var/www/.virtualenvs/bookplate-venv
+       virtualenv_command=/bin/virtualenv
+       state=present
+  when: '"development" not in group_names'
+- name: install modules from requirements file (development)
+  pip: requirements=/vagrant/requirements.txt
+       virtualenv=/var/www/.virtualenvs/bookplate-venv
+       virtualenv_command=/bin/virtualenv
+       state=present
+  when: '"development" in group_names'
