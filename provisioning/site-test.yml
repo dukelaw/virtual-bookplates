@@ -1,0 +1,8 @@
+---
+# master playbook
+- hosts: stage
+  remote_user: "{{ remote_user }}"
+  become: true
+  tasks:
+    - name: debug testing
+      debug: msg="just connecting"

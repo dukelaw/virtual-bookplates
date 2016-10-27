@@ -2,31 +2,18 @@
 # basic packages
 - name: install python
   yum: name=python state=present
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
 - name: install python-devel
   yum: name=python-devel state=present
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
 - name: install python-pip
   yum: name=python-pip state=latest
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
 - name: install python-virtualenv
   yum: name=python-virtualenv state=latest
-- name: install modules from requirements file
-  pip: requirements=/vagrant/requirements.txt
-       virtualenv=/var/www/.virtualenvs/bookplate-venv
-       virtualenv_command=/bin/virtualenv
-       state=present
-  when: '"development" not in group_names'
-- name: install modules from requirements file (development)
-  pip: requirements=/vagrant/requirements.txt
-       virtualenv=/var/www/.virtualenvs/bookplate-venv
-       virtualenv_command=/bin/virtualenv
-       state=present
-  when: '"development" in group_names'
-- name: link conf file into apache (development)
-  file: src=/vagrant/bookplate/conf/bookplate.conf
-        dest=/etc/httpd/conf.d/bookplate.conf
-        owner=root group=root state=link
-  when: '"development in group_names"'
-- name: link conf file into apache
-  debug: msg="Linking conf file into /etc/httpd/conf.d"
-  when: '"development not in group_names"'
-- name: restart httpd
-  service: name=httpd state=restarted

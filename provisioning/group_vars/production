@@ -6,4 +6,4 @@ remote_user: schen
 app_dir: /srv/www/virtual-bookplates/bookplate
 conf_dir: /srv/dls/testapps
 venv_dir: /srv/dls/testapps/.virtualenv
-require_dir: /srv/www/virtual-bookplates
+project_dir: /srv/www/virtual-bookplates

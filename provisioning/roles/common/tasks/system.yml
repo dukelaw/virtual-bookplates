@@ -3,3 +3,29 @@
 #  timezone: name={{ timezone }}
 - name: set timezone to system variable
   command: '/bin/timedatectl set-timezone {{ timezone }}'
+  when: '"development" in group_names'
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
+- name: add id_rsa to dev machine for deployment
+  copy: src=/vagrant/provisioning/files/.ssh/id_rsa
+        dest=/home/vagrant/.ssh/id_rsa
+        owner=vagrant group=vagrant mode=0600
+  when: '"development" in group_names'
+- name: add id_rsa.pub to dev machine for deployment
+  copy: src=/vagrant/provisioning/files/.ssh/id_rsa.pub
+        dest=/home/vagrant/.ssh/id_rsa.pub
+        owner=vagrant group=vagrant mode=0600
+  when: '"development" in group_names'
+# setup apache
+- name: install any version of apache
+  yum: name=httpd state=present
+  notify:
+    - restart httpd
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
+- name: install mod_wsgi for apache
+  yum: name=mod_wsgi state=present
+  notify:
+    - restart httpd

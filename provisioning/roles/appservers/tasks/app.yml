@@ -1,16 +1,60 @@
 ---
 # appliation specific tasks
-# setup apache
-- name: install any version of apache
-  yum: name=httpd state=present
-  notify:
-    - restart httpd
-- name: install mod_wsgi for apache
-  yum: name=mod_wsgi state=present
-  notify:
-    - restart httpd
-
 # git clone repository for project
+- name: Creates .ssh directory for root
+  file: path=/root/.ssh state=directory
+# This public key is set on Github repo Settings under "Deploy keys"
+- name: add id_rsa to dev machine for deployment
+  copy: src=/vagrant/provisioning/files/.ssh/stage_id_rsa
+        dest=/root/.ssh/stage_id_rsa
+        owner=root group=root mode=0600
+  tags: git
+  when: '"development" not in group_names'
+- name: pause 6 seconds
+  pause: seconds=6
+  when: '"development" not in group_names'
+  tags: git
+- name: add stage_id_rsa.pub to dev machine for deployment
+  copy: src=/vagrant/provisioning/files/.ssh/stage_id_rsa.pub
+        dest=/root/.ssh/stage_id_rsa.pub
+        owner=root group=root mode=0600
+  when: '"development" not in group_names'
+  tags: git
+- name: pause 6 seconds
+  pause: seconds=6
+  tags: git
+  when: '"development" not in group_names'
+- name: clone project repository
+  git: repo=git@gitlab.oit.duke.edu:law-library-webapps/virtual-bookplates.git
+       dest=/srv/www/virtual-bookplates
+       accept_hostkey=yes
+       update=yes
+       key_file=/root/.ssh/stage_id_rsa
+  become: true
+  tags: git
+  when: '"development" not in group_names'
+- name: pause 6 seconds
+  pause: seconds=6
+  when: '"development" not in group_names'
+# requirements for project
+- name: install modules from requirements file
+  pip: requirements={{ project_dir }}/requirements.txt
+       virtualenv={{ venv_dir }}/bookplate-venv
+       virtualenv_command=/bin/virtualenv
+       state=present
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
+# setup configuration file for apache
+- name: link conf file into apache
+  file: src={{ project_dir }}/bookplate/conf/bookplate.conf
+        dest={{ conf_dir }}/bookplate.conf
+        owner=root group=root state=link
+  notify: restart httpd
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
+
 # for development link to apache html doc directory
 # this happens in staging/testing/production
 # setup directives for wsgi

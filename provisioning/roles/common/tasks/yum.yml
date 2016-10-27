@@ -1,11 +1,23 @@
 ---
 - name: latest scientific linux
   yum: name=yum-conf-sl7x state=present
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
 - name: latest SL repos
   yum: name=yum-conf-repos state=present
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
 - name: install epel repository
   yum: name=yum-conf-epel state=present
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
 - name: install libxml-devel
   yum: name=libxml2-devel state=latest
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
 - name: install libxlst-devel
   yum: name=libxslt-devel state=latest
