@@ -1,9 +1,8 @@
 # group variables for stage
 ---
-hostname: 'virtual-bookplates'
-locale: 'en_US.UTF-8'
-language: 'en_US:en'
 timezone: 'America/New_York'
-ntp_server: 'pool.ntp.org'
 git_branch: master
 remote_user: schen
+app_dir: /srv/www/bookplate
+conf_dir: /srv/dls/testapps
+venv_dir: /srv/dls/testapps/.virtualenv

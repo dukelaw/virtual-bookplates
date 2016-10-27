@@ -1,9 +1,8 @@
 # group variables for development
 ---
-hostname: 'virtual-bookplates'
-locale: 'en_US.UTF-8'
-language: 'en_US:en'
 timezone: 'America/New_York'
-ntp_server: 'pool.ntp.org'
 git_branch: master
 remote_user: vagrant
+app_dir: /var/www/bookplate
+conf_dir: /etc/httpd/conf.d/
+venv_dir: /var/www/.virtualenvs/
