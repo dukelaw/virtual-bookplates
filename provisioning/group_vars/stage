@@ -3,6 +3,7 @@
 timezone: 'America/New_York'
 git_branch: master
 remote_user: schen
-app_dir: /srv/www/bookplate
+app_dir: /srv/www/virtual-bookplates/bookplate
 conf_dir: /srv/dls/testapps
 venv_dir: /srv/dls/testapps/.virtualenv
+require_dir: /srv/www/virtual-bookplates

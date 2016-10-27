@@ -4,5 +4,6 @@ timezone: 'America/New_York'
 git_branch: master
 remote_user: vagrant
 app_dir: /var/www/bookplate
-conf_dir: /etc/httpd/conf.d/
-venv_dir: /var/www/.virtualenvs/
+conf_dir: /etc/httpd/conf.d
+venv_dir: /var/www/.virtualenvs
+require_dir: /vagrant
