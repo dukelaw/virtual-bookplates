@@ -1,0 +1,8 @@
+# group variables for production
+---
+timezone: 'America/New_York'
+git_branch: master
+remote_user: schen
+app_dir: /srv/www/bookplate
+conf_dir: /srv/dls/testapps
+venv_dir: /srv/dls/testapps/.virtualenv
