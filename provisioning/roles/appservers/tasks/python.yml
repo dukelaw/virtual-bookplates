@@ -24,11 +24,9 @@
   file: src=/vagrant/bookplate/conf/bookplate.conf
         dest=/etc/httpd/conf.d/bookplate.conf
         owner=root group=root state=link
-  notify:
-    - restart httpd
   when: '"development in group_names"'
 - name: link conf file into apache
   debug: msg="Linking conf file into /etc/httpd/conf.d"
   when: '"development not in group_names"'
-  notify:
-    - restart httpd
+- name: restart httpd
+  service: name=httpd state=restarted
