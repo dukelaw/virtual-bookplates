@@ -7,6 +7,8 @@
     - restart httpd
 - name: install mod_wsgi for apache
   yum: name=mod_wsgi state=present
+  notify:
+    - restart httpd
 
 # git clone repository for project
 # for development link to apache html doc directory
