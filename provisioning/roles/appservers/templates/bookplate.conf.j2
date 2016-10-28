@@ -1,8 +1,8 @@
-WSGIScriptAlias /bookplate /vagrant/bookplate/bookplate-app.wsgi
-WSGIDaemonProcess bookplate user=apache group=apache home=/vagrant/bookplate/
+WSGIScriptAlias /bookplate {{ app_dir }}/bookplate-app.wsgi
+WSGIDaemonProcess bookplate user=apache group=apache home={{ app_dir }}
 WSGIScriptReloading On
 
-<Directory "/vagrant/bookplate/">
+<Directory "{{ app_dir }}">
     WSGIProcessGroup bookplate
     WSGIApplicationGroup %{GLOBAL}
     Require all denied

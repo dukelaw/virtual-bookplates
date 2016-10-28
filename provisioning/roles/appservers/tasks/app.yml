@@ -45,18 +45,19 @@
 - name: pause 3 seconds
   pause: seconds=3
   when: '"development" not in group_names'
+# install wsgi
+- name: template the wsgi file
+  template: src=bookplate-app.wsgi.j2 dest={{ app_dir }}/bookplate-app.wsgi
+            owner=root group=root mode=0644
+- name: template the conf file
+  template: src=bookplate.conf.j2 dest={{ app_dir }}/conf/bookplate.conf
+            owner=root group=root mode=0644
 # setup configuration file for apache
 - name: link conf file into apache
-  file: src={{ project_dir }}/bookplate/conf/bookplate.conf
+  file: src={{ app_dir }}/conf/bookplate.conf
         dest={{ conf_dir }}/bookplate.conf
         owner=root group=root state=link
   notify: restart httpd
 - name: pause 3 seconds
   pause: seconds=3
   when: '"development" not in group_names'
-
-# for development link to apache html doc directory
-# this happens in staging/testing/production
-# setup directives for wsgi
-# set permissions
-# move files around
