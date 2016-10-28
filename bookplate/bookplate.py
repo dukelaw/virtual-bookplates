@@ -8,7 +8,7 @@
 ### to activate environment = . env/bin/activate
 
 """
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 import urllib
 import requests
 import xml.etree.ElementTree as ET
@@ -23,10 +23,11 @@ def page_not_found(e, message=None):
 @app.route('/<hol_number>') ### get doc_number
 def get_hol(hol_number):
 
-    if re.match("\d{9}", hol_number) is None:
+    if re.match("\d{1,9}$", hol_number) is None:
         message = "This holding number is not valid" # check for valid holding record numbers
         return page_not_found(404, message=message)
-
+    elif re.match("\d{1,8}$", hol_number):
+        return redirect(hol_number.zfill(9))
     url = "http://catalog.library.duke.edu/X?&base=duk60&doc_number=" + hol_number + "&op=find-doc"
     r = requests.get(url)
     text = r.text
