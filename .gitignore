@@ -4,3 +4,7 @@ venv
 site.retry
 *.*~
 .ssh
+
+# system files
+bookplate.conf
+bookplate-app.wsgi

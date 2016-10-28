@@ -47,11 +47,31 @@
   when: '"development" not in group_names'
 # install wsgi
 - name: template the wsgi file
-  template: src=bookplate-app.wsgi.j2 dest={{ app_dir }}/bookplate-app.wsgi
+  template: src=bookplate-app.wsgi.j2
+            dest=/tmp/bookplate-app.wsgi.temp
             owner=root group=root mode=0644
+            force=yes
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
+- name: move the wsgi file
+  command: mv /tmp/bookplate-app.wsgi.temp {{ app_dir }}/bookplate-app.wsgi
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
 - name: template the conf file
-  template: src=bookplate.conf.j2 dest={{ app_dir }}/conf/bookplate.conf
+  template: src=bookplate.conf.j2
+            dest=/tmp/bookplate.conf.temp
             owner=root group=root mode=0644
+            force=yes
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
+- name: move the conf file
+  command: mv /tmp/bookplate.conf.temp {{ app_dir }}/conf/bookplate.conf
+- name: pause 3 seconds
+  pause: seconds=3
+  when: '"development" not in group_names'
 # setup configuration file for apache
 - name: link conf file into apache
   file: src={{ app_dir }}/conf/bookplate.conf
