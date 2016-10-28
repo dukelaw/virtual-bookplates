@@ -6,5 +6,5 @@ site.retry
 .ssh
 
 # system files
-bookplate.conf
-bookplate-app.wsgi
+bookplate/conf/bookplate.conf
+bookplate/bookplate-app.wsgi
