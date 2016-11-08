@@ -1,12 +1,13 @@
-Bookplate application
-=====================
+# Virtual Bookplates
 
-Documentation
+# Summary
 
-====================
+This application is an application that will add a link to the bottom of a
+record's cataloging page linking to a record's bookplate. The bookplate itself
+will include a link back to the original cataloging record.
 
-This application is an application that will add a link to the bottom of a record's catologing page linking to a record's bookplate. The bookplate
-itself will include a link back to the original cataloging record.
+Links to the application such as https://extranet2.law.duke.edu/bookplate/004231017
+
 
 Development Enviroment
 ====================
@@ -32,13 +33,11 @@ For the development machine(test-apps) we need to git clone environment so apahc
 
 Example: http://localhost:8080/005031541
 
-# staging
+# Staging
 
 Run ansible from the development vagrant environment:
 
-`$ ansible-playbook -vvv --ask-become-pass -i provisioning/stage provisioning/site.yml
-`
-
+`$ ansible-playbook -vvv --ask-become-pass -i provisioning/stage provisioning/site.yml`
 
 # Templates
 
