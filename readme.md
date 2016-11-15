@@ -9,17 +9,20 @@ will include a link back to the original cataloging record.
 Links to the application such as https://extranet2.law.duke.edu/bookplate/004231017
 
 
-Development Enviroment
+Development Envirnoment
 ====================
 
-1. Install virtualenv: virtualenv venv --always-copy
-2. Activate virtualenv: . venv/bin/activate
-3. Install required modules from requirements.txt = pip freeze > requirements.txt
+1. Log into vagrant
+  - vagrant up
+  - vagrant ssh
+2. Activate virtualenv: source /var/www/.virtualenvs/bookplate-venv/bin/activate
+3. If necessary, install required modules from requirements.txt = pip freeze > requirements.txt
  - pip freeze captures what is already installed. The pipe directs these modules to requirements.txt
  - confused on what modules are installed in your virualenv? use pip freeze!
-4. export FLASK_APP=bookplate.py
-5. export FLASK_DEBUG=1
-6. flask run --debugger --host=0.0.0.0
+4. cd into bookplate directory (where the app lives)
+5. export FLASK_APP=bookplate.py
+6. export FLASK_DEBUG=1
+7. flask run --debugger --host=0.0.0.0
 
 Example
 
