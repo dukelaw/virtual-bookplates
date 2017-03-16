@@ -34,7 +34,9 @@ def get_hol(hol_number):
     root = ET.fromstring(text) ### creates XML element
 
     bookplate_list = []
-    bookplate_text = root.findtext('.//varfield[@id="541"]/subfield[@label="c"]')
+    bookplate_text_a = root.findtext('.//varfield[@id="541"]/subfield[@label="a"]')
+    bookplate_text_c = root.findtext('.//varfield[@id="541"]/subfield[@label="c"]')
+    bookplate_text = bookplate_text_a + bookplate_text_c
 
     if bookplate_text is not None: ### check for plate
         bookplate_list = bookplate_text.split(';')
