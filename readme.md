@@ -6,8 +6,7 @@ This application is an application that will add a link to the bottom of a
 record's cataloging page linking to a record's bookplate. The bookplate itself
 will include a link back to the original cataloging record.
 
-Links to the application such as https://extranet2.law.duke.edu/bookplate/004231017
-
+Links to the application such as https://extranet2.law.duke.edu/bookplate/004428814
 
 ## Development Environment
 
@@ -71,7 +70,10 @@ based off of which server is running the app, etc.
 Python.yml is triggered after app.yml through main.yml. The python.yml playbook installs essential python modules to whatever environment
 the app will be running on such as python-devel, pip, etc.
 
-# instructions for manual deployment on production machine(extranet)
+# Manual Deployment on Producton (extranet2)
+
+Instructions for manual deployment on production machine(extranet)
+
 - log into root: sudo -s
 - Go to the project directory: cd /srv/www/virtual-bookplates
 - Clone the project repo: git clone git@gitlab.oit.duke.edu:law-library-webapps/virtual-bookplates.git
