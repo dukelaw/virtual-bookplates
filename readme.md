@@ -9,8 +9,7 @@ will include a link back to the original cataloging record.
 Links to the application such as https://extranet2.law.duke.edu/bookplate/004231017
 
 
-Development Envirnoment
-====================
+## Development Environment
 
 1. Log into vagrant
   - vagrant up
@@ -24,11 +23,8 @@ Development Envirnoment
 6. export FLASK_DEBUG=1
 7. flask run --debugger --host=0.0.0.0
 
-Example
 
-===================
-Linking the Configuration file
-===================
+## Linking the Configuration file
 
 To link the configuration file (bookplate.conf) to the testing/production machine(vagrant): ln -s /etc/httpd/conf.d /vagrant/bookplate/conf/bookplate.conf
 
