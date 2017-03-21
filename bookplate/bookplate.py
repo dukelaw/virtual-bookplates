@@ -33,25 +33,26 @@ def get_hol(hol_number):
     text = r.text
     root = ET.fromstring(text) ### creates XML element
 
-    bookplate_list = []
+    ###bookplate_list = []
     bookplate_text_a = root.findtext('.//varfield[@id="541"]/subfield[@label="a"]')
     bookplate_text_c = root.findtext('.//varfield[@id="541"]/subfield[@label="c"]')
     if bookplate_text_a is None:
         bookplate_text = bookplate_text_c
     else:
-        bookplate_text = bookplate_text_a + bookplate_text_c
+        bookplate_text = bookplate_text_a + ' ' + bookplate_text_c
 
     if bookplate_text is not None: ### check for plate
-        bookplate_list = bookplate_text.split(';')
+        bookplate_text = bookplate_text.split(';')
     else:
         message = "This book doesn't have an award plate" # check for an actual award plate
         return page_not_found(404, message=message)
 
     bookplate_date = root.findtext('.//varfield[@id="541"]/subfield[@label="d"]')
 
-    if bookplate_date is not None:
-        bookplate_list.append(bookplate_date)
+    # if bookplate_date is not None:
+    #     bookplate_list.append(bookplate_date)
 
     bib_number = root.findtext('.//varfield[@id="LKR"]/subfield[@label="b"]')
-    result = "\n".join(bookplate_list)
-    return render_template('index.html', bookplate_list=bookplate_list, hol_number=hol_number, bookplate_date=bookplate_date, bib_number=bib_number)
+    #result = "\n".join(bookplate_list)
+    bookplate_text = ''.join(bookplate_text)
+    return render_template('index.html', bookplate_text=bookplate_text, hol_number=hol_number, bookplate_date=bookplate_date, bib_number=bib_number)
